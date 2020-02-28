@@ -7,7 +7,7 @@ class RestaurantProfile extends React.Component {
     return(
       <div>
         <h1>Restaurant Profile</h1>
-      <RestaurantCard />
+      {/* <RestaurantCard /> */}
       </div>
     )
   }

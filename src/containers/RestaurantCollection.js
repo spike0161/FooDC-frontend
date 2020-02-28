@@ -7,7 +7,13 @@ class RestaurantCollection extends React.Component {
     return(
       <div>
         <h1>Restaurant Collection</h1>
-      <RestaurantCard />
+      {this.props.restaurants.map( restaurant =>
+        <RestaurantCard 
+          key = {restaurant.id}
+          restaurant = {restaurant}
+        />
+      )}
+        
       </div>
     )
   }
