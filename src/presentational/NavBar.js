@@ -4,11 +4,11 @@ const NavBar = () => {
   return(
     <div>
       <div className="ui menu">
-    <a className="item">LOGO HERE</a>
-    <a className="item">Profile</a>
+    <button className="item">LOGO HERE</button>
+    <button href = "" className="item">Profile</button>
     <div className="right menu">
-      <a className="item">Sign Up</a>
-      <a className="item">Login</a>
+      <button href = "" className="item">Sign Up</button>
+      <button href = "" className="item">Login</button>
     </div>
   </div>
     </div>

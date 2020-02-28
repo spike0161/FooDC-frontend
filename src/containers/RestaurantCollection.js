@@ -10,7 +10,7 @@ class RestaurantCollection extends React.Component {
       {this.props.restaurants.map( restaurant =>
         <RestaurantCard 
           key = {restaurant.id}
-          name = {restaurant.name}
+          restaurant = {restaurant}
         />
       )}
         
