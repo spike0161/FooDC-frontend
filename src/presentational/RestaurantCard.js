@@ -11,10 +11,9 @@ const RestaurantCard = (props) => {
         <a className= "header">{props.restaurant.name}</a>
         <div className="description">
           {props.restaurant.category}
-          {props.restaurant.rating}
-          {props.restaurant.price}
+          <p>Rating: {props.restaurant.rating}</p>
+          <p>Price: {props.restaurant.price}</p>
           {props.restaurant.display_phone}
-
         </div>
       </div>
       </div>
