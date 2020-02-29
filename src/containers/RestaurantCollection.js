@@ -1,23 +1,19 @@
-import React from 'react'
-import RestaurantCard from "../presentational/RestaurantCard"
+import React from "react";
+import RestaurantCard from "../presentational/RestaurantCard";
 
 class RestaurantCollection extends React.Component {
-
-
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <h1>Restaurant Collection</h1>
-      {this.props.restaurants.map( restaurant =>
-        <RestaurantCard
-          key = {restaurant.id}
-          restaurant = {restaurant}
-        />
-      )}
-
+        <div className="ui cards">
+          {this.props.restaurants.map(restaurant => (
+            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default RestaurantCollection
+export default RestaurantCollection;
