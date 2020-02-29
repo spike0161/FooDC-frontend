@@ -9,7 +9,8 @@ import UserProfile from './containers/UserProfile'
 class App extends React.Component {
 
   state = {
-    restaurantsArray: []
+    restaurantsArray: [],
+    homeButton: null
   }
 
   componentDidMount(){
@@ -18,12 +19,19 @@ class App extends React.Component {
     .then(data => this.setState({restaurantsArray: data}))
   }
 
+  showAllRestaurants = () => {
+    this.setState({ homeButton: true})
+  }
+
   render(){
   return (
     <div className="App">
       <NavBar />
-      <HomePage />
-      <RestaurantCollection restaurants = {this.state.restaurantsArray}/>
+
+      {this.state.homeButton ? <RestaurantCollection restaurants={this.state.restaurantsArray}/> :
+      <HomePage showAllRestaurants={this.showAllRestaurants}/>
+      }
+      
       <RestaurantProfile />
       <UserProfile />
 
