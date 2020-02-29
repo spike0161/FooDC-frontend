@@ -1,22 +1,22 @@
-import React from 'react';
-import './App.css';
-import NavBar from './presentational/NavBar'
-import HomePage from './presentational/HomePage'
-import RestaurantCollection from './containers/RestaurantCollection'
-import RestaurantProfile from './containers/RestaurantProfile'
-import UserProfile from './containers/UserProfile'
+import React from "react";
+import "./App.css";
+import NavBar from "./presentational/NavBar";
+import HomePage from "./presentational/HomePage";
+import RestaurantCollection from "./containers/RestaurantCollection";
+import RestaurantProfile from "./containers/RestaurantProfile";
+import UserProfile from "./containers/UserProfile";
 
 class App extends React.Component {
-
   state = {
     restaurantsArray: [],
-    displayPage: null
-  }
+    displayPage: null,
+    homeButton: null
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     fetch("http://localhost:3000/restaurants")
-    .then(res => res.json())
-    .then(data => this.setState({restaurantsArray: data}))
+      .then(res => res.json())
+      .then(data => this.setState({ restaurantsArray: data }));
   }
 
   moreInfoHandler = (restaurant) => {
@@ -24,20 +24,23 @@ class App extends React.Component {
 
   }
 
+  showAllRestaurants = () => {
+    this.setState({ homeButton: true });
+  };
+
   render(){
   return (
     <div className="App">
       <NavBar />
-      <HomePage />
+      <HomePage showAllRestaurants={this.showAllRestaurants}/>
       <RestaurantCollection 
         restaurants = {this.state.restaurantsArray} 
         more={this.moreInfoHandler}/>
       <RestaurantProfile />
       <UserProfile />
-
-    </div>
-  );
+      </div>
+    )
   }
 }
 
-export default App;
+export default App
