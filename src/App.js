@@ -32,12 +32,14 @@ class App extends React.Component {
   return (
     <div className="App">
       <NavBar />
-      <HomePage showAllRestaurants={this.showAllRestaurants}/>
+      {this.state.homeButton ? (
       <RestaurantCollection 
         restaurants = {this.state.restaurantsArray} 
-        more={this.moreInfoHandler}/>
-      <RestaurantProfile />
-      <UserProfile />
+        more={this.moreInfoHandler}/>) :
+        <HomePage showAllRestaurants={this.showAllRestaurants}/>
+      }
+        <RestaurantProfile />
+        <UserProfile />
       </div>
     )
   }
