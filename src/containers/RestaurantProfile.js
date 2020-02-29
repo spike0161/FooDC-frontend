@@ -1,5 +1,5 @@
 import React from 'react'
-import RestaurantCard from '../presentational/RestaurantCard'
+// import RestaurantCard from '../presentational/RestaurantCard'
 
 class RestaurantProfile extends React.Component {
 

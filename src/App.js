@@ -30,8 +30,8 @@ class App extends React.Component {
       <NavBar />
       <HomePage />
       <RestaurantCollection 
-      restaurants = {this.state.restaurantsArray} 
-      more={this.moreInfoHandler}/>
+        restaurants = {this.state.restaurantsArray} 
+        more={this.moreInfoHandler}/>
       <RestaurantProfile />
       <UserProfile />
 
