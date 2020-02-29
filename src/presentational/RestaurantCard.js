@@ -1,7 +1,6 @@
 import React from 'react'
 
 const RestaurantCard = (props) => {
-  console.log(props)
   return(
     <div className="ui card">
       
@@ -15,6 +14,7 @@ const RestaurantCard = (props) => {
           <p>Price: {props.restaurant.price}</p>
           {props.restaurant.display_phone}
         </div>
+          <button onClick = {() => props.more(props.restaurant)}>More info</button>
       </div>
       </div>
     </div>

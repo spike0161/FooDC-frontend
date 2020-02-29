@@ -1,6 +1,7 @@
 import React from 'react'
 import RestaurantCard from "../presentational/RestaurantCard"
 
+
 class RestaurantCollection extends React.Component {
 
   render(){
@@ -11,6 +12,7 @@ class RestaurantCollection extends React.Component {
         <RestaurantCard 
           key = {restaurant.id}
           restaurant = {restaurant}
+          more = {this.props.more}
         />
       )}
         
