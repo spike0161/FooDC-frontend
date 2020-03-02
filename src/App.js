@@ -11,12 +11,13 @@ class App extends React.Component {
     restaurantsArray: [],
     displayPage: null,
     homeButton: null,
+    profileButton: null
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/restaurants")
       .then(res => res.json())
-      .then(data => this.setState({ restaurantsArray: data }));
+      .then(data => this.setState({ restaurantsArray: data }))
   }
 
 
@@ -26,21 +27,26 @@ class App extends React.Component {
   }
 
   showAllRestaurants = () => {
-    this.setState({ homeButton: true });
+    this.setState({ homeButton: true })
   };
+
+  profileBtnHandler = () => {
+    console.log('clicking button')
+    this.setState({ profileButton: true })
+  }
 
   render(){
   return (
     <div className="App">
-      <NavBar />
+      <NavBar profileBtn = {this.profileBtnHandler}/>
       {this.state.homeButton ? (
       <RestaurantCollection 
         restaurants = {this.state.restaurantsArray} 
         more={this.moreInfoHandler}/>) :
         <HomePage showAllRestaurants={this.showAllRestaurants}/>
       }
-        <RestaurantProfile />
-        <UserProfile />
+        {/* <RestaurantProfile /> */}
+        {this.state.profileButton ? (<UserProfile />) : (null)}
 
       </div>
     )
