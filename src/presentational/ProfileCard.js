@@ -1,9 +1,10 @@
 import React from 'react'
 
-const ProfileCard = () => {
+const ProfileCard = (props) => {
   return(
     <div>
-    Profile Card
+      <h3>{props.restaurant.name}</h3>
+      <img style={{width: 250, height: 200}} alt = {props.restaurant.name} src = {props.restaurant.img_url}></img>
     </div>
   )
 }

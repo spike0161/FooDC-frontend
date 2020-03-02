@@ -10,7 +10,7 @@ class App extends React.Component {
   state = {
     restaurantsArray: [],
     displayPage: null,
-    homeButton: null
+    homeButton: null,
   };
 
   componentDidMount() {
@@ -18,6 +18,7 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ restaurantsArray: data }));
   }
+
 
   moreInfoHandler = (restaurant) => {
     console.log('hi from App')
@@ -40,6 +41,7 @@ class App extends React.Component {
       }
         <RestaurantProfile />
         <UserProfile />
+
       </div>
     )
   }

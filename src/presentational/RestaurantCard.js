@@ -1,7 +1,6 @@
 import React from "react";
 
 const RestaurantCard = props => {
-  console.log(props);
 
 
   return (
