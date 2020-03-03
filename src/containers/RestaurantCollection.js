@@ -7,11 +7,11 @@ class RestaurantCollection extends React.Component {
     return (
       <div>
         <h1>Restaurant Collection</h1>
-        <select
+        <h3>Search by cuisine:</h3>
+      <select
           className="ui search dropdown"
-          onChange={e => this.props.categoryHandler(e)}
-        >
-          <option value="">Filter by Cuisine</option>
+          onChange={e => this.props.categoryHandler(e)}>
+          <option value="">All Restaurant</option>
           <option value="American">American</option>
           <option value="Italian">Italian</option>
           <option value="Indian">Indian</option>
