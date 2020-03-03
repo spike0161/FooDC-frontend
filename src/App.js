@@ -11,8 +11,7 @@ class App extends React.Component {
   state = {
     restaurantsArray: [],
     loading: true,
-    usersBookmarks: [], 
-    currentUser: {id: 1}
+    currentUser: {id: 19}
   };
 
   componentDidMount() {
@@ -34,6 +33,16 @@ class App extends React.Component {
     .then(data => console.log(data))
   }
 
+  removeBookmarkHandler = (id) => {
+    console.log(id)
+    fetch(`http://localhost:3000/bookmarked_restaurants/19/${id}`, {
+      method: 'DELETE',
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+    })
+  }
 
   render(){
   return (
@@ -64,8 +73,9 @@ class App extends React.Component {
             }
           }/>
           
-
-          <Route path='/users/:id' component={UserProfile}/>
+          <Route path='/users/:id' render={(props) => 
+            <UserProfile remove = {this.removeBookmarkHandler} user = {this.state.currentUser.id}/>
+          }/>
 
         </Router>
       
