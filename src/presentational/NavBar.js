@@ -1,16 +1,26 @@
 import React from 'react'
+import {
+  Link
+} from "react-router-dom";
 
 
 const NavBar = (props) => {
   return(
     <div>
       <div className="ui menu">
-    <button className="item">Logo Here</button>
-    <button onClick = {props.profileBtn} href = "" className="item">Profile</button>
-    <div className="right menu">
-      <button href = "" className="item">Sign Up</button>
-      <button href = "" className="item">Login</button>
-    </div>
+      <Link to = "/">
+        <button className="item">Logo Here</button>
+      </Link>
+      
+      <Link to="/users/:id">
+        <button className="item">Profile</button>
+      </Link>
+      
+
+      <div className="right menu">
+        <button href = "" className="item">Sign Up</button>
+        <button href = "" className="item">Login</button>
+      </div>
   </div>
     </div>
   )

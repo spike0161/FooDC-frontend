@@ -5,13 +5,14 @@ import HomePage from "./presentational/HomePage";
 import RestaurantCollection from "./containers/RestaurantCollection";
 import RestaurantProfile from "./containers/RestaurantProfile";
 import UserProfile from "./containers/UserProfile";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
     restaurantsArray: [],
     displayPage: null,
-    homeButton: null,
-    profileButton: null
+    profileButton: null,
+    restaurantShowPage: null
   };
 
   componentDidMount() {
@@ -23,31 +24,38 @@ class App extends React.Component {
 
   moreInfoHandler = (restaurant) => {
     console.log('hi from App')
+    this.setState({restaurantShowPage: restaurant})
 
   }
 
-  showAllRestaurants = () => {
-    this.setState({ homeButton: true })
-  };
-
   profileBtnHandler = () => {
-    console.log('clicking button')
     this.setState({ profileButton: true })
   }
 
   render(){
   return (
     <div className="App">
-      <NavBar profileBtn = {this.profileBtnHandler}/>
-      {this.state.homeButton ? (
-      <RestaurantCollection 
-        restaurants = {this.state.restaurantsArray} 
-        more={this.moreInfoHandler}/>) :
-        <HomePage showAllRestaurants={this.showAllRestaurants}/>
-      }
-        {/* <RestaurantProfile /> */}
-        {this.state.profileButton ? (<UserProfile />) : (null)}
+      <Router>
+        <NavBar profileBtn = {this.profileBtnHandler}/>
 
+
+          <Route
+            exact path='/'
+            render={(props)=> <HomePage showAllRestaurants={this.showAllRestaurants}/>}
+          />
+          
+          <Route 
+          path='/restaurants' 
+          render={(props)=>
+            <RestaurantCollection 
+            restaurants = {this.state.restaurantsArray} 
+            more={this.moreInfoHandler}/>}/> 
+            
+          <Route path='/restaurants/:id' component={RestaurantProfile}/>
+
+          <Route path='/users/:id' component={UserProfile}/>
+
+        </Router>
       </div>
     )
   }

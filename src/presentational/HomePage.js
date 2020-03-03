@@ -1,5 +1,7 @@
 import React from 'react'
-// import NavBar from './NavBar'
+import {
+  Link
+} from "react-router-dom";
 
 const HomePage = props => {
   return (
@@ -7,12 +9,11 @@ const HomePage = props => {
       <div>
         <h1>Welcome to FooDC</h1>
       </div>
-      <button
-        className="ui primary basic button"
-        onClick={() => props.showAllRestaurants()}
-      >
-        Restaurants
-      </button>
+      <Link to="/restaurants">
+        <button
+          className="ui primary basic button"
+          >Restaurants</button>
+      </Link>
     </div>
   );
 };
