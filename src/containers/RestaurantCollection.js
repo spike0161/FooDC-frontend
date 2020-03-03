@@ -2,31 +2,30 @@ import React from "react";
 import RestaurantCard from "../presentational/RestaurantCard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
 class RestaurantCollection extends React.Component {
   render() {
-
     return (
       <div>
         <h1>Restaurant Collection</h1>
-
-  <select className="ui search dropdown" onChange={(e) => this.props.categoryHandler(e)}>
-    <option value="">Filter by Cuisine</option>
-    <option value="American">American</option>
-    <option value="Italian">Italian</option>
-    <option value="Indian">Indian</option>
-    <option value="Greek">Greek</option>
-    <option value="Ramen">Ramen</option>
-    </select>
+        <select
+          className="ui search dropdown"
+          onChange={e => this.props.categoryHandler(e)}
+        >
+          <option value="">Filter by Cuisine</option>
+          <option value="American">American</option>
+          <option value="Italian">Italian</option>
+          <option value="Indian">Indian</option>
+          <option value="Greek">Greek</option>
+          <option value="Bars">Bars</option>
+          <option value="Vegetarian">Vegetarian</option>
+          <option value="Brazilian">Brazilian</option>
+        </select>
         <div className="ui cards">
-      {this.props.restaurants.map( restaurant =>
-          <RestaurantCard
-            key = {restaurant.id}
-            restaurant = {restaurant}
-          />
-        )}
-      </div>
-
+          {this.props.restaurants.map(restaurant => (
+            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </div>
+        }
       </div>
     );
   }
