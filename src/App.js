@@ -10,21 +10,34 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 class App extends React.Component {
   state = {
     restaurantsArray: [],
-    loading: true
+    loading: true,
+    filteredRestaurants: [],
+    category: ""
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/restaurants")
       .then(res => res.json())
-      .then(data => this.setState({ restaurantsArray: data, loading: false }))
+      .then(data => this.setState({ restaurantsArray: data, loading: false}))
+  }
+
+  categoryHandler = (e) => {
+      this.getFilteredRestaurants(e)
+  }
+
+  getFilteredRestaurants = (e) => {
+    let filterResults = this.state.restaurantsArray.filter(restaurant => restaurant.category == e.target.value)
+    this.setState({filteredRestaurants: filterResults, category: e.target.value})
   }
 
 
+
   render(){
+
   return (
     <div className="App">
-      {!this.state.loading ? 
-      
+      {!this.state.loading ?
+
       <Router>
         <NavBar profileBtn = {this.profileBtnHandler}/>
 
@@ -33,13 +46,15 @@ class App extends React.Component {
             exact path='/'
             render={(props)=> <HomePage showAllRestaurants={this.showAllRestaurants}/>}
           />
-          
-          <Route 
+
+          <Route
           exact
-          path='/restaurants' 
+          path='/restaurants'
           render={(props)=>
-            <RestaurantCollection 
-            restaurants = {this.state.restaurantsArray} />}/> 
+            <RestaurantCollection
+            restaurants = {this.state.filteredRestaurants}
+            categoryHandler={this.categoryHandler}
+            />}/>
 
           <Route path ='/restaurants/:id' render={(props) => {
             console.log(props)
@@ -48,18 +63,18 @@ class App extends React.Component {
             return <RestaurantProfile restaurant = {restaurantObj}/>
             }
           }/>
-          
+
 
           <Route path='/users/:id' component={UserProfile}/>
 
         </Router>
-      
-      : 
-      
+
+      :
+
       "Loading!!!!!!"
-      
+
       }
-      
+
       </div>
     )
   }
