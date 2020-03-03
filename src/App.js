@@ -10,31 +10,21 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 class App extends React.Component {
   state = {
     restaurantsArray: [],
-    displayPage: null,
-    profileButton: null,
-    restaurantShowPage: null
+    loading: true
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/restaurants")
       .then(res => res.json())
-      .then(data => this.setState({ restaurantsArray: data }))
+      .then(data => this.setState({ restaurantsArray: data, loading: false }))
   }
 
-
-  moreInfoHandler = (restaurant) => {
-    console.log('hi from App')
-    this.setState({restaurantShowPage: restaurant})
-
-  }
-
-  profileBtnHandler = () => {
-    this.setState({ profileButton: true })
-  }
 
   render(){
   return (
     <div className="App">
+      {!this.state.loading ? 
+      
       <Router>
         <NavBar profileBtn = {this.profileBtnHandler}/>
 
@@ -45,17 +35,31 @@ class App extends React.Component {
           />
           
           <Route 
+          exact
           path='/restaurants' 
           render={(props)=>
             <RestaurantCollection 
-            restaurants = {this.state.restaurantsArray} 
-            more={this.moreInfoHandler}/>}/> 
-            
-          <Route path='/restaurants/:id' component={RestaurantProfile}/>
+            restaurants = {this.state.restaurantsArray} />}/> 
+
+          <Route path ='/restaurants/:id' render={(props) => {
+            console.log(props)
+            let id = parseInt(props.match.params.id)
+            let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
+            return <RestaurantProfile restaurant = {restaurantObj}/>
+            }
+          }/>
+          
 
           <Route path='/users/:id' component={UserProfile}/>
 
         </Router>
+      
+      : 
+      
+      "Loading!!!!!!"
+      
+      }
+      
       </div>
     )
   }

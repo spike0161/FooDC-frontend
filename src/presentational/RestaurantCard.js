@@ -1,8 +1,9 @@
 import React from "react";
+import {
+  Link
+} from "react-router-dom";
 
 const RestaurantCard = props => {
-
-
   return (
 
     <div className="ui card">
@@ -17,7 +18,9 @@ const RestaurantCard = props => {
             {props.restaurant.display_phone}
           </div>
         </div>
-          <button onClick = {() => props.more(props.restaurant)}>More info</button>
+        <Link to={`/restaurants/${props.restaurant.id}`}>
+          <button>More info</button>
+        </Link>
       </div>
     </div>
   );
