@@ -1,5 +1,8 @@
 import React from 'react'
 import ProfileCard from '../presentational/ProfileCard'
+import {
+  Link
+} from "react-router-dom";
 
 class UserProfile extends React.Component {
 
@@ -8,18 +11,22 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount(){
-    fetch("http://localhost:3000/users/1")
+    fetch("http://localhost:3000/users/19")
     .then(res => res.json())
     .then(data => this.setState({ usersArray: data }))
   }
+
+
 
   render(){
     let restaurants = this.state.usersArray.restaurants
     return(
       <div>
         <h2>{this.state.usersArray.username}'s Bookmarks</h2>
-        {restaurants ? restaurants.map(restObj => <ProfileCard key = {restObj.id} restaurant = {restObj}/>) : null}
-
+        {restaurants ? restaurants.map(restObj => <ProfileCard key = {restObj.id} restaurant = {restObj} remove = {this.props.remove}/>) : null}
+        <Link to="/restaurants">
+          <button>Search all restaurants</button>
+        </Link>
       </div>
     )
   }

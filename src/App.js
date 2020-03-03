@@ -12,7 +12,8 @@ class App extends React.Component {
     restaurantsArray: [],
     loading: true,
     filteredRestaurants: [],
-    category: ""
+    category: "",
+    currentUser: {id: 19}
   };
 
   componentDidMount() {
@@ -21,10 +22,36 @@ class App extends React.Component {
       .then(data => this.setState({ restaurantsArray: data, loading: false }));
   }
 
+
   categoryHandler = e => {
     e.preventDefault();
     this.setState({ category: e.target.value })
   };
+
+  bookmarkBtnHandler = (restaurant) => {
+    fetch('http://localhost:3000/bookmarked_restaurants', {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+      body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
+  removeBookmarkHandler = (id) => {
+    console.log(id)
+    fetch(`http://localhost:3000/bookmarked_restaurants/19/${id}`, {
+      method: 'DELETE',
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+    })
+  }
+
 
   getFilteredRestaurants = () => {
     let filterResults = this.state.restaurantsArray.filter(
@@ -48,6 +75,7 @@ class App extends React.Component {
               )}
             />
 
+
             <Route
               exact
               path="/restaurants"
@@ -70,6 +98,19 @@ class App extends React.Component {
                 return <RestaurantProfile restaurant={restaurantObj} />;
               }}
             />
+
+          <Route path ='/restaurants/:id' render={(props) => {
+
+            let id = parseInt(props.match.params.id)
+            let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
+            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler}/>
+            }
+          }/>
+
+          <Route path='/users/:id' render={(props) =>
+            <UserProfile remove = {this.removeBookmarkHandler} user = {this.state.currentUser.id}/>
+          }/>
+
 
             <Route path="/users/:id" component={UserProfile} />
           </Router>
