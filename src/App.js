@@ -23,19 +23,15 @@ class App extends React.Component {
 
   categoryHandler = e => {
     e.preventDefault();
-    this.getFilteredRestaurants(e);
+    this.setState({ category: e.target.value })
   };
 
-  getFilteredRestaurants = e => {
+  getFilteredRestaurants = () => {
     let filterResults = this.state.restaurantsArray.filter(
-      restaurant => restaurant.category == e.target.value
-    );
-    this.setState({
-      filteredRestaurants: filterResults,
-      category: e.target.value
-    });
+      restaurant => restaurant.category.includes(this.state.category)
+    )
     return filterResults;
-  };
+  }
 
   render() {
     return (
@@ -57,8 +53,7 @@ class App extends React.Component {
               path="/restaurants"
               render={props => (
                 <RestaurantCollection
-                  filteredResults={this.state.filteredRestaurants}
-                  restaurants={this.state.restaurantsArray}
+                  restaurants={this.getFilteredRestaurants()}
                   categoryHandler={this.categoryHandler}
                 />
               )}
