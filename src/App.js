@@ -87,18 +87,6 @@ class App extends React.Component {
               )}
             />
 
-            <Route
-              path="/restaurants/:id"
-              render={props => {
-                console.log(props);
-                let id = parseInt(props.match.params.id);
-                let restaurantObj = this.state.restaurantsArray.find(
-                  rest => rest.id === id
-                );
-                return <RestaurantProfile restaurant={restaurantObj} />;
-              }}
-            />
-
           <Route path ='/restaurants/:id' render={(props) => {
 
             let id = parseInt(props.match.params.id)
@@ -110,9 +98,6 @@ class App extends React.Component {
           <Route path='/users/:id' render={(props) =>
             <UserProfile remove = {this.removeBookmarkHandler} user = {this.state.currentUser.id}/>
           }/>
-
-
-            <Route path="/users/:id" component={UserProfile} />
           </Router>
         ) : (
           "Loading!!!!!!"
