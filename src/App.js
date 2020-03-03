@@ -10,13 +10,28 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 class App extends React.Component {
   state = {
     restaurantsArray: [],
-    loading: true
+    loading: true,
+    usersBookmarks: [], 
+    currentUser: {id: 1}
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/restaurants")
       .then(res => res.json())
       .then(data => this.setState({ restaurantsArray: data, loading: false }))
+  }
+
+  bookmarkBtnHandler = (restaurant) => {
+    fetch('http://localhost:3000/bookmarked_restaurants', {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+      body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
   }
 
 
@@ -45,7 +60,7 @@ class App extends React.Component {
             // console.log(props)
             let id = parseInt(props.match.params.id)
             let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
-            return <RestaurantProfile restaurant = {restaurantObj}/>
+            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler}/>
             }
           }/>
           

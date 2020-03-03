@@ -17,7 +17,7 @@ class RestaurantProfile extends React.Component {
         <a href={this.props.restaurant.url}>{this.props.restaurant.name}'s Website</a>
         <h4>Price: {this.props.restaurant.price}</h4>
         <h4>Cuisine: {this.props.restaurant.category}</h4>
-        <button>Bookmark</button>
+        <button onClick = {()=>this.props.bookmark(this.props.restaurant)}>Bookmark</button>
         <Link to="/restaurants">
           <button>Back</button>
         </Link>
