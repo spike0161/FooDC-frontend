@@ -42,7 +42,7 @@ class App extends React.Component {
             restaurants = {this.state.restaurantsArray} />}/> 
 
           <Route path ='/restaurants/:id' render={(props) => {
-            console.log(props)
+            // console.log(props)
             let id = parseInt(props.match.params.id)
             let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
             return <RestaurantProfile restaurant = {restaurantObj}/>

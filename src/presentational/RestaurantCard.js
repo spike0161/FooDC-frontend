@@ -15,7 +15,6 @@ const RestaurantCard = props => {
             {props.restaurant.category}
             <p>Rating: {props.restaurant.rating}</p>
             <p>Price: {props.restaurant.price}</p>
-            {props.restaurant.display_phone}
           </div>
         </div>
         <Link to={`/restaurants/${props.restaurant.id}`}>
