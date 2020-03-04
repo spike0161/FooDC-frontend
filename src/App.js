@@ -13,13 +13,18 @@ class App extends React.Component {
     loading: true,
     filteredRestaurants: [],
     category: "",
-    currentUser: {id: 19}
+    currentUser: {id: 19},
+    reviewsArray: []
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/restaurants")
       .then(res => res.json())
       .then(data => this.setState({ restaurantsArray: data, loading: false }));
+
+      fetch("http://localhost:3000/reviews")
+      .then(res => res.json())
+      .then(data => this.setState({ reviewsArray: data}))
   }
 
 
@@ -90,7 +95,7 @@ class App extends React.Component {
 
             let id = parseInt(props.match.params.id)
             let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
-            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler}/>
+            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler} reviews = {this.state.reviewsArray}/>
             }
           }/>
 

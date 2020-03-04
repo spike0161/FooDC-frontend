@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Link
 } from "react-router-dom";
+import ReviewCard from "../presentational/ReviewCard"
 
 class RestaurantProfile extends React.Component {
 
@@ -17,6 +18,16 @@ class RestaurantProfile extends React.Component {
         <a href={this.props.restaurant.url}>{this.props.restaurant.name}'s Website</a>
         <h4>Price: {this.props.restaurant.price}</h4>
         <h4>Cuisine: {this.props.restaurant.category}</h4>
+        <div>
+        <form>
+            <label>Leave Review:</label>
+            <input type="text" name="review"></input>
+            <input type="submit" value="Submit"></input>
+          </form>
+        </div>
+        <div>
+          {this.props.reviews.map(review => <ReviewCard key = {review.id} review = {review}/> )}
+        </div>
         <button onClick = {()=>this.props.bookmark(this.props.restaurant)}>Bookmark</button>
         <Link to="/restaurants">
           <button>Back</button>
