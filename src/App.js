@@ -14,7 +14,8 @@ class App extends React.Component {
     filteredRestaurants: [],
     category: "",
     currentUser: {id: 19},
-    reviewsArray: []
+    reviewsArray: [],
+    bookmarks: []
   };
 
   componentDidMount() {
@@ -42,8 +43,6 @@ class App extends React.Component {
       },
       body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
   }
 
   removeBookmarkHandler = (id) => {
@@ -55,7 +54,6 @@ class App extends React.Component {
       },
     })
   }
-
 
   getFilteredRestaurants = () => {
     let filterResults = this.state.restaurantsArray.filter(
@@ -95,7 +93,7 @@ class App extends React.Component {
 
             let id = parseInt(props.match.params.id)
             let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
-            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler} reviews = {this.state.reviewsArray}/>
+            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler} reviews = {this.state.reviewsArray} />
             }
           }/>
 

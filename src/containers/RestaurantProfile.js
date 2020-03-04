@@ -6,8 +6,27 @@ import ReviewCard from "../presentational/ReviewCard"
 
 class RestaurantProfile extends React.Component {
 
-  render(){
-    
+  state ={
+    value: ""
+  }
+
+  handleChange(event){
+    // this.setState({value: event.target.value})
+  }
+
+  handleSubmit(event) {
+    fetch('http://localhost:3000/reviews', {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      },
+      // body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
+    })
+    event.preventDefault();
+  }
+
+  render(){  
     return(
       <div>
         <h1>{this.props.restaurant.name}</h1>
@@ -19,9 +38,9 @@ class RestaurantProfile extends React.Component {
         <h4>Price: {this.props.restaurant.price}</h4>
         <h4>Cuisine: {this.props.restaurant.category}</h4>
         <div>
-        <form>
+        <form onSubmit = {this.handleSubmit}>
             <label>Leave Review:</label>
-            <input type="text" name="review"></input>
+            <textarea value={this.state.value} onChange={this.handleChange}></textarea>
             <input type="submit" value="Submit"></input>
           </form>
         </div>
