@@ -42,7 +42,6 @@ class App extends React.Component {
   }
 
   removeBookmarkHandler = (id) => {
-    console.log(id)
     fetch(`http://localhost:3000/bookmarked_restaurants/19/${id}`, {
       method: 'DELETE',
       headers: {

@@ -1,6 +1,5 @@
 import React from "react";
 import RestaurantCard from "../presentational/RestaurantCard";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class RestaurantCollection extends React.Component {
   render() {
