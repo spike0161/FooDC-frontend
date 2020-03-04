@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../images/logo.png'
 import {
   Link
 } from "react-router-dom";
@@ -9,11 +10,11 @@ const NavBar = (props) => {
     <div>
       <div className="ui menu">
       <Link to = "/">
-        <button className="item">Logo Here</button>
+        <button className="item"><img src={Logo} style={{width: 80, height: 50}}></img></button>
       </Link>
       
       <Link to="/users/:id">
-        <button className="item">Profile</button>
+        <button style={{width: 80, height: 70}} className="item">Profile</button>
       </Link>
       
 

@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+h1 {
+  font-family: 'Rokkitt', serif;
+}
+
+h2 {
+  font-family: 'Rokkitt', serif;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -18,8 +26,26 @@
   height: 25%
 }
 
-.image {
-  width: 100%;
-  margin-top: 100px;
-  margin-bottom: 100px;
+img {
+  border-radius: 25px;
 }
+
+
+/* restaurant cards */
+.rest-card-img{
+  margin: auto;
+  background-color: white;
+}
+
+#restaurant-cards{
+  margin-top: 30px;
+}
+
+#rest-card-btn{
+  margin-bottom: 10px;
+}
+
+/* restaurant profile */
+/* .rest-profile-info{
+  background-color: teal;
+} */

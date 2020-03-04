@@ -19,7 +19,7 @@ class RestaurantCollection extends React.Component {
           <option value="Vegetarian">Vegetarian</option>
           <option value="Brazilian">Brazilian</option>
         </select>
-        <div className="ui cards">
+        <div className="ui centered cards">
           {this.props.restaurants.map(restaurant => (
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
           ))}
