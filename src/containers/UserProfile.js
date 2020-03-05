@@ -23,10 +23,11 @@ class UserProfile extends React.Component {
     return(
       <div>
         <h2>{this.state.usersArray.username}'s Bookmarks</h2>
-        {restaurants ? restaurants.map(restObj => <ProfileCard key = {restObj.id} restaurant = {restObj} remove = {this.props.remove}/>) : null}
         <Link to="/restaurants">
-          <button>Search all restaurants</button>
+          <button className="ui orange basic button">Search all restaurants</button>
         </Link>
+        {restaurants ? restaurants.map(restObj => <ProfileCard key = {restObj.id} restaurant = {restObj} remove = {this.props.remove}/>) : null}
+
       </div>
     )
   }
