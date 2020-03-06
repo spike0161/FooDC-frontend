@@ -24,7 +24,6 @@ class RestaurantCollection extends React.Component {
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
           ))}
         </div>
-        }
       </div>
     );
   }

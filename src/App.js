@@ -6,6 +6,7 @@ import RestaurantCollection from "./containers/RestaurantCollection";
 import RestaurantProfile from "./containers/RestaurantProfile";
 import UserProfile from "./containers/UserProfile";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+// import Footer from "./presentational/Footer"
 
 class App extends React.Component {
   state = {
@@ -23,9 +24,10 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ restaurantsArray: data, loading: false }));
 
-      fetch("http://localhost:3000/reviews")
-      .then(res => res.json())
-      .then(data => this.setState({ reviewsArray: data}))
+  }
+
+  getSpecificReview(){
+
   }
 
 
@@ -93,17 +95,20 @@ class App extends React.Component {
 
             let id = parseInt(props.match.params.id)
             let restaurantObj = this.state.restaurantsArray.find(rest => rest.id === id)
-            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler} reviews = {this.state.reviewsArray} />
+            return <RestaurantProfile restaurant = {restaurantObj} bookmark = {this.bookmarkBtnHandler}  />
             }
           }/>
 
           <Route path='/users/:id' render={(props) =>
             <UserProfile remove = {this.removeBookmarkHandler} user = {this.state.currentUser.id}/>
           }/>
+            {/* <Footer/> */}
           </Router>
+          
         ) : (
           "Loading!!!!!!"
         )}
+        
       </div>
     );
   }

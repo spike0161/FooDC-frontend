@@ -10,7 +10,7 @@ const NavBar = (props) => {
     <div>
       <div className="ui menu">
       <Link to = "/">
-        <button className="item"><img src={Logo} style={{width: 80, height: 50}}></img></button>
+        <button className="item"><img alt ="logo" src={Logo} style={{width: 80, height: 50}}></img></button>
       </Link>
       
       <Link to="/users/:id">
