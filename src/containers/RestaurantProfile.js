@@ -34,6 +34,7 @@ class RestaurantProfile extends React.Component {
 
   handleSubmit(event) {
   //  debugger
+    event.preventDefault();
     fetch("http://localhost:3000/reviews", {
       method: 'POST',
       headers: {
@@ -42,8 +43,9 @@ class RestaurantProfile extends React.Component {
       },
       body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: this.props.restaurant.id, review: this.state.value})
     })
+    .then(res => res.json())
+    .then(review => this.setState({reviewsArray: [...this.state.reviewsArray, review]}), event.target.reset())
     alert('Review submitted: ' + this.state.value);
-    event.preventDefault();
   }
 
 
