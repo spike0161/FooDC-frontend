@@ -26,10 +26,6 @@ class App extends React.Component {
 
   }
 
-  getSpecificReview(){
-
-  }
-
 
   categoryHandler = e => {
     e.preventDefault();
@@ -37,6 +33,7 @@ class App extends React.Component {
   };
 
   bookmarkBtnHandler = (restaurant) => {
+    
     fetch('http://localhost:3000/bookmarked_restaurants', {
       method: 'POST',
       headers: {
@@ -44,6 +41,7 @@ class App extends React.Component {
           "Accept": "application/json"
       },
       body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
+      
     })
   }
 

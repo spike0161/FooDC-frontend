@@ -16,8 +16,6 @@ class UserProfile extends React.Component {
     .then(data => this.setState({ usersArray: data }))
   }
 
-
-
   render(){
     let restaurants = this.state.usersArray.restaurants
     return(
