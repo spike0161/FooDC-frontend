@@ -33,7 +33,12 @@ class App extends React.Component {
   };
 
   bookmarkBtnHandler = (restaurant) => {
-    
+    console.log(restaurant.users[0])
+    if (restaurant.users[0].id === 19){
+      alert("Already bookmarked this page!")
+    } else {
+      alert("Bookmarked!")
+    }
     fetch('http://localhost:3000/bookmarked_restaurants', {
       method: 'POST',
       headers: {
@@ -41,7 +46,6 @@ class App extends React.Component {
           "Accept": "application/json"
       },
       body: JSON.stringify({user_id: this.state.currentUser.id, restaurant_id: restaurant.id}),
-      
     })
   }
 
